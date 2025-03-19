@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kupnja - Trenutno Dostupne Nekretnine</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-6fXfKAaNt2MSerZNdF9fBlMnD1hMkNUOMUp2u6OdaS6NgIH27mCTISF8hdge7nU3Bml84K3DYY6glKlZynkXag=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+
+  <!-- NAVBAR CONTAINER -->
+  <div id="navbarContainer"></div>
+
+  <!-- Title/heading -->
+  <div class="title-bar" style="margin-top: 2rem;">
+    <div>
+      <h2>Kupnja nekretnine</h2>
+      <p class="subtitle">Trenutno dostupne nekretnine za kupnju.</p>
+    </div>
+    <div class="title-bar-right" id="searchInfo"></div>
+  </div>
+
+  <div class="title-bar">
+    <div class="kupnja-search-container">
+      <div class="search-box">
+        <input type="text" placeholder="Pretraži ovdje..." id="searchInputKupnja" />
+        <button id="searchBtnKupnja">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+    <div id="searchInfo"></div>
+  </div>
+  
+  <!-- Main container: left = properties grid, right = google map -->
+  <div class="property-page-container">
+    
+    <!-- LEFT SIDE: property listing grid -->
+    <div class="property-list" id="propertyList">
+      <!-- SAMPLE PROPERTY 1 -->
+      <div 
+        class="property-card"
+        data-price="$400,000"
+        data-beds="3"
+        data-baths="2"
+        data-sqft="1800"
+        data-address="500 Sun St, Split, Croatia"
+        data-img="public/images/house4.jpg"
+      >
+        <button class="dots-button" onclick="toggleMenu(this)">
+          <i class="fa-solid fa-ellipsis"></i>
+        </button>
+        <div class="dots-menu">
+          <a href="#">Bookmark</a>
+          <a href="#">Contact us</a>
+        </div>
+        <img src="public/images/house4.jpg" alt="Home 1" />
+        <div class="card-content">
+          <div class="sold-date">
+            <span class="red-dot">•</span> For Sale
+          </div>
+          <h3>$400,000</h3>
+          <div class="details">3 bed&nbsp;&nbsp;2 bath&nbsp;&nbsp;1800 sqft</div>
+          <div class="address">
+            500 Sun St<br /> Split, Croatia
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE PROPERTY 2 -->
+      <div
+        class="property-card"
+        data-price="$350,000"
+        data-beds="2"
+        data-baths="1"
+        data-sqft="1200"
+        data-address="Kralja Tomislava 10, Zagreb"
+        data-img="public/images/house3.jpg"
+      >
+        <button class="dots-button" onclick="toggleMenu(this)">
+          <i class="fa-solid fa-ellipsis"></i>
+        </button>
+        <div class="dots-menu">
+          <a href="#">Bookmark</a>
+          <a href="#">Contact us</a>
+        </div>
+        <img src="public/images/house3.jpg" alt="Home 2" />
+        <div class="card-content">
+          <div class="sold-date">
+            <span class="red-dot">•</span> For Sale
+          </div>
+          <h3>$350,000</h3>
+          <div class="details">2 bed&nbsp;&nbsp;1 bath&nbsp;&nbsp;1200 sqft</div>
+          <div class="address">
+            Kralja Tomislava 10<br /> Zagreb
+          </div>
+        </div>
+      </div>
+
+      <!-- ...More property-cards as needed... -->
+    </div>
+
+    <!-- RIGHT SIDE: Google Maps container -->
+    <div class="property-map">
+      <iframe
+        id="mapFrameKupnja"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        style="border:0"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=500+Sun+St+Split+Croatia&output=embed"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content" id="footerContainer">
+      <h2>Kontakt informacije</h2>
+      <div class="contact-details">
+        <p><strong>Adresa ureda:</strong> Ulica Primjera 1, 10000 Zagreb</p>
+        <p><strong>Telefon:</strong> +385 99 1234 567</p>
+        <p><strong>Gmail:</strong> nekretnineprimjer@gmail.com</p>
+        <p><strong>Radno vrijeme:</strong> Pon - Pet: 09 - 17h</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Form Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeContactModal">&times;</button>
+      <h2>Kontaktirajte nas</h2>
+      <form id="contactForm">
+        <label for="name">Ime:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="surname">Prezime:</label>
+        <input type="text" id="surname" name="surname" required />
+
+        <label for="email">Email adresa:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Broj telefona (opcionalno):</label>
+        <input type="tel" id="phone" name="phone" />
+
+        <label for="description">Kratki opis (opcionalno):</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+
+        <button type="submit" class="submit-btn">Pošalji</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Thank You Modal -->
+  <div class="modal-overlay" id="thankYouModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeThankYouModal">&times;</button>
+      <h2>Hvala vam!</h2>
+      <p>Vaš zahtjev je primljen. Potvrda je poslana na uneseni email.</p>
+    </div>
+  </div>
+
+  <!-- Partials + map logic -->
+  <script>
+    // Load the external navbar
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbarContainer").innerHTML = data;
+      });
+
+    function toggleMenu(btn) {
+      const card = btn.closest('.property-card');
+      card.classList.toggle('show-menu');
+    }
+  </script>
+
+  <script>
+    // 1) Grab ?search= from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    let searchQuery = urlParams.get('search')?.trim().toLowerCase() || "";
+
+    const searchInfo = document.getElementById("searchInfo");
+    if (searchQuery) {
+      searchInfo.textContent = `Prikazujem rezultate za "${searchQuery}"`;
+    }
+
+    const propertyList = document.getElementById("propertyList");
+    const allCards = [...propertyList.querySelectorAll(".property-card")];
+    const mapFrameKupnja = document.getElementById("mapFrameKupnja");
+
+    // Simple Levenshtein
+    function levenshtein(a, b) {
+      if (!a) return b.length;
+      if (!b) return a.length;
+      const matrix = [];
+      for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+      for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          if (b.charAt(i - 1) === a.charAt(j - 1)) {
+            matrix[i][j] = matrix[i - 1][j - 1];
+          } else {
+            matrix[i][j] = Math.min(
+              matrix[i - 1][j],
+              matrix[i][j - 1],
+              matrix[i - 1][j - 1]
+            ) + 1;
+          }
+        }
+      }
+      return matrix[b.length][a.length];
+    }
+
+    function updateMap(address) {
+      if (!address) return;
+      const newSrc = "https://www.google.com/maps?q="
+                   + encodeURIComponent(address)
+                   + "&output=embed";
+      mapFrameKupnja.src = newSrc;
+    }
+
+    function filterProperties(query) {
+      if (!query) {
+        propertyList.innerHTML = "";
+        allCards.forEach(card => propertyList.appendChild(card));
+        return;
+      }
+      const tokensQuery = query.split(/\s+/);
+      const cardData = allCards.map(card => {
+        const addr = (card.dataset.address || "").toLowerCase();
+        const tokensAddr = addr.split(/[\s,]+/);
+        let minDistance = Infinity;
+        tokensQuery.forEach(qToken => {
+          tokensAddr.forEach(aToken => {
+            const d = levenshtein(qToken, aToken);
+            if (d < minDistance) minDistance = d;
+          });
+        });
+        return { element: card, distance: minDistance };
+      });
+      const maxAllowedDistance = 3;
+      const matched = cardData.filter(c => c.distance <= maxAllowedDistance);
+      matched.sort((a, b) => a.distance - b.distance);
+
+      propertyList.innerHTML = "";
+      if (matched.length > 0) {
+        matched.forEach(item => propertyList.appendChild(item.element));
+        const bestMatch = matched[0].element;
+        updateMap(bestMatch.dataset.address || "");
+      } else {
+        const noResults = document.createElement("p");
+        noResults.textContent = "Nema rezultata pretrage.";
+        noResults.style.padding = "1rem";
+        propertyList.appendChild(noResults);
+      }
+    }
+
+    // If user arrived with ?search=, filter
+    if (searchQuery) {
+      filterProperties(searchQuery);
+    }
+
+    // 2) Second search bar logic
+    const searchInputKupnja = document.getElementById("searchInputKupnja");
+    const searchBtnKupnja   = document.getElementById("searchBtnKupnja");
+    function doKupnjaSearch() {
+      const newQuery = searchInputKupnja.value.trim().toLowerCase();
+      searchQuery = newQuery;
+      searchInfo.textContent = newQuery
+        ? `Prikazujem rezultate za "${newQuery}"`
+        : "";
+      filterProperties(newQuery);
+    }
+    searchBtnKupnja.addEventListener("click", doKupnjaSearch);
+    searchInputKupnja.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        doKupnjaSearch();
+      }
+    });
+
+    // 3) Hover for 1.5s => update map
+    allCards.forEach(card => {
+      let hoverTimer = null;
+
+      card.addEventListener('mouseenter', () => {
+        // Start a 1.5s timer
+        hoverTimer = setTimeout(() => {
+          const address = card.dataset.address || "";
+          updateMap(address);
+        }, 1500);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        // Cancel if the user leaves early
+        if (hoverTimer) {
+          clearTimeout(hoverTimer);
+          hoverTimer = null;
+        }
+      });
+    });
+  </script>
+
+  <!-- The main script that handles language & contact modals, etc. -->
+  <script src="script.js"></script>
+</body>
+</html>

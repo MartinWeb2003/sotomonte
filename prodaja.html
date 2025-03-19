@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prodaja nekretnina</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <!-- NAVBAR (loaded from navbar.html) -->
+  <div id="navbarContainer"></div>
+
+  <!-- Hero / Heading Section -->
+  <section class="hero" style="height: 40vh; background: #f9f9f9; color: #333;">
+    <div class="hero-content" style="padding: 4rem; text-align: center;">
+      <h1 style="color: #333;">Prodaja nekretnina</h1>
+      <p style="max-width: 600px; margin: 1rem auto;">
+        Prodajete kuću ili stan? Iskoristite našu stručnost i osigurajte brzo i sigurno zaključenje prodaje.
+      </p>
+    </div>
+  </section>
+
+  <!-- Three-Feature Section -->
+  <section style="padding: 3rem 1rem;">
+    <h2 style="text-align: center; margin-bottom: 4rem;">
+      Kako vam možemo pomoći
+    </h2>
+    <div
+      style="
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        justify-content: space-around;
+        gap: 2rem;
+        flex-wrap: wrap;
+      "
+    >
+      <!-- Feature 1 -->
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <img src="public/icons/bullhorn-solid.svg" alt="Promocija Icon" style="width: 60px; height: auto;" />
+        <h3 style="margin-top: 1rem;">Široka Promocija</h3>
+        <p style="margin-top: 0.5rem;">
+          Oglašavamo vaš stan ili kuću na više platformi, čime povećavamo broj zainteresiranih kupaca.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <img src="public/icons/handshake-solid.svg" alt="Savjet" style="width: 70px; height: auto;" />
+        <h3 style="margin-top: 1rem;">Stručna Podrška</h3>
+        <p style="margin-top: 0.5rem;">
+          Naša stručna podrška vodi vas kroz sve korake do uspješne prodaje.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <img src="public/icons/chart-line-solid.svg" alt="Graf  " style="width: 60px; height: auto;" />
+        <h3 style="margin-top: 1rem;">Brze Transakcije</h3>
+        <p style="margin-top: 0.5rem;">
+          Transakcije se odvijaju u najkraćem roku.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Button -->
+  <div style="text-align: center; margin-bottom: 3rem;">
+    <button
+      class="contact-btn"
+      style="font-size: 1rem; padding: 0.75rem 2rem;"
+      id="prodajaContactBtn"
+    >
+      Saznaj više
+    </button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content" id="footerContainer">
+      <h2>Kontakt informacije</h2>
+      <div class="contact-details">
+        <p><strong>Adresa ureda:</strong> Ulica Primjera 1, 10000 Zagreb</p>
+        <p><strong>Telefon:</strong> +385 99 1234 567</p>
+        <p><strong>Gmail:</strong> nekretnineprimjer@gmail.com</p>
+        <p><strong>Radno vrijeme:</strong> Pon - Pet: 09 - 17h</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Copy the same modals from index.html -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeContactModal">&times;</button>
+      <h2>Kontaktirajte nas</h2>
+      <form id="contactForm">
+        <label for="name">Ime:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="surname">Prezime:</label>
+        <input type="text" id="surname" name="surname" required />
+
+        <label for="email">Email adresa:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Broj telefona (opcionalno):</label>
+        <input type="tel" id="phone" name="phone" />
+
+        <label for="description">Kratki opis (opcionalno):</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+
+        <button type="submit" class="submit-btn">Pošalji</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Thank You Modal -->
+  <div class="modal-overlay" id="thankYouModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeThankYouModal">&times;</button>
+      <h2>Hvala vam!</h2>
+      <p>Vaš zahtjev je primljen. Potvrda je poslana na uneseni email.</p>
+    </div>
+  </div>
+
+  <!-- Load external navbar + main script -->
+  <script>
+    // Load the navbar
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbarContainer").innerHTML = data;
+      });
+
+    // We can reuse the same script logic for the contact modal:
+    document.addEventListener("DOMContentLoaded", () => {
+      const prodajaContactBtn = document.getElementById("prodajaContactBtn");
+      const contactModal = document.getElementById("contactModal");
+      const thankYouModal = document.getElementById("thankYouModal");
+      const closeContactModalBtn = document.getElementById("closeContactModal");
+      const closeThankYouModalBtn = document.getElementById("closeThankYouModal");
+      const contactForm = document.getElementById("contactForm");
+
+      prodajaContactBtn.addEventListener("click", () => {
+        contactModal.style.display = "flex";
+      });
+
+      closeContactModalBtn.addEventListener("click", () => {
+        contactModal.style.display = "none";
+      });
+
+      closeThankYouModalBtn.addEventListener("click", () => {
+        thankYouModal.style.display = "none";
+      });
+
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Hide contact form, show thanks
+        contactModal.style.display = "none";
+        thankYouModal.style.display = "flex";
+        contactForm.reset();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,622 @@
+/* ------------------------------ */
+/* GLOBAL RESETS & FONTS          */
+/* ------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    transition: all 0.2s;
+  }
+  
+  /* ------------------------------ */
+  /* HEADER / NAV BAR               */
+  /* ------------------------------ */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .logo img {
+    height: 36px;
+    margin-right: 0.5rem;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+  }
+  .header-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  .header-buttons button {
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .login-btn {
+    background-color: #000;
+    color: #fff;
+  }
+  .signup-btn {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
+  
+  /* ------------------------------ */
+  /* HERO SECTION                   */
+  /* ------------------------------ */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    background: url('public/images/house1.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    padding: 2rem;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  }
+  
+  /* Search box (hero) */
+  .search-box {
+    display: flex;
+    background-color: #fff;
+    border-radius: 50px;
+    overflow: hidden;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .search-box input {
+    border: none;
+    padding: 0.75rem 1rem;
+    flex: 1;
+    outline: none;
+    font-size: 1rem;
+  }
+  .search-box button {
+    background-color: #fff;
+    border: none;
+    padding: 0 1rem;
+    cursor: pointer;
+  }
+  .search-box button i {
+    width: 24px;
+    height: 24px;
+    color: #000;
+  }
+  
+  /* ------------------------------ */
+  /* TWO-COLUMN SECTIONS            */
+  /* ------------------------------ */
+  .two-column {
+    display: flex;
+    width: 100%;
+    height: 600px;
+    margin-top: 50px;
+    margin-bottom: 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .column-image {
+    flex: 1.1;
+    background: url("public/images/house2.jpg") center/cover no-repeat;
+  }
+  .column-image2 {
+    flex: 1.1;
+    background: url("public/images/house3.jpg") center/cover no-repeat;
+  }
+  .column-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #fff;
+  }
+  .column-text h2 {
+    margin-bottom: 1rem;
+  }
+  .column-text p {
+    margin-bottom: 1.5rem;
+  }
+  .contact-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+  }
+  
+  /* ------------------------------ */
+  /* TITLE BAR / HEADINGS           */
+  /* ------------------------------ */
+  .title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding: 10px 30px;
+  }
+  .title-bar h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #333;
+  }
+  .title-bar p {
+    color: #555;
+    margin-top: 0.25rem;
+  }
+  .title-bar-right a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+  }
+  .title-bar-right a:hover {
+    text-decoration: underline;
+  }
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+  }
+  
+  /* ------------------------------ */
+  /* SCROLLABLE CARDS (INDEX.HTML)  */
+  /* ------------------------------ */
+  .cards-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 4rem;
+    padding-left: 5px;
+    position: relative;
+  }
+  .cards-container::-webkit-scrollbar {
+    display: none;
+  }
+  /* Fade on the right side */
+  .cards-container-wrapper {
+    position: relative; /* This allows us to position the pseudo-element */
+    overflow: hidden;   /* Prevents fade effect from moving with scroll */
+    padding-bottom: 2rem;
+  }
+  .cards-container-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px; /* Width of the fade */
+    height: 100%;
+    pointer-events: none; /* So users can still interact with cards */
+    background: linear-gradient(to left, white 50%, rgba(255, 255, 255, 0)); /* White fade */
+  }
+  
+  /* The card itself */
+  .card {
+    min-width: 240px;
+    width: 380px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .card:hover {
+    filter: brightness(0.9);
+  }
+  .card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+  .card-content {
+    padding: 1rem;
+  }
+  .sold-date {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .red-dot {
+    color: #c00;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .card-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #000;
+    font-weight: 700;
+  }
+  .card-content .details {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+  .card-content .address {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  /* ------------------------------ */
+  /* DETAIL VIEW PAGE               */
+  /* (for detailedView.html)        */
+  /* ------------------------------ */
+  .detail-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px; /* As used inline before */
+  }
+  .detail-image {
+    width: 60%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .info h2 {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    color: #333;
+  }
+  .price {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #000;
+    font-weight: bold;
+  }
+  .details {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  .address {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #777;
+  }
+  .btn-contact {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  /* MAP on detail page */
+  .detail-map {
+    width: 100%;
+    height: 400px;
+    max-width: 1200px;
+    margin: 2rem auto;
+    border: none;
+  }
+  
+  /* ------------------------------ */
+  /* KUPNJA.HTML GRID + MAP         */
+  /* ------------------------------ */
+  .property-page-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  .property-list {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .property-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .property-card:hover {
+    filter: brightness(0.97);
+  }
+  .property-card:hover img {
+    transform: scale(1.05);
+  }
+  .property-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .property-card .card-content {
+    padding: 1rem;
+  }
+  
+  /* The three dots (menu) */
+  .dots-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  .dots-menu {
+    display: none;
+    position: absolute;
+    top: 2rem;
+    right: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+  }
+  .dots-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .dots-menu a:last-child {
+    border-bottom: none;
+  }
+  .dots-menu a:hover {
+    background-color: #f5f5f5;
+  }
+  .property-card.show-menu .dots-menu {
+    display: block;
+  }
+  /* Right side map in kupnja.html */
+  .property-map {
+    flex: 1.2;
+    min-width: 300px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    overflow: hidden;
+    height: auto;
+  }
+  
+  /* ------------------------------ */
+  /* FOOTER                         */
+  /* (Now in footer.html)           */
+  /* ------------------------------ */
+  
+  /* ------------------------------ */
+  /* MODALS (CONTACT & THANK YOU)   */
+  /* ------------------------------ */
+  .modal-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 6px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #666;
+  }
+  .close-btn:hover {
+    color: #000;
+  }
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-content label {
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+  .modal-content input,
+  .modal-content textarea {
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .modal-content textarea {
+    resize: vertical;
+  }
+  .submit-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .submit-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* Title bar on kupnja.html for second search bar, etc. */
+  .kupnja-search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .kupnja-search-container .search-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px;
+  }
+  .kupnja-search-container input {
+    flex: 1;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    outline: none;
+  }
+  .kupnja-search-container button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 0 1rem;
+  }
+  .kupnja-search-container button i {
+    color: #333;
+    font-size: 1.1rem;
+  }
+  #searchInfo {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #444;
+    text-align: right;
+  }
+  
+  footer {
+    background-color: #f3f3f3; /* a light gray */
+    color: #333;              /* text color that contrasts on light gray */
+    padding: 2rem 1rem;       /* vertical/horizontal padding */
+  }
+  
+  .footer-content {
+    max-width: 1200px;        /* keep footer content from being too wide */
+    margin: 0 auto;           /* center the content horizontally */
+    text-align: center;       /* center text and elements */
+  }
+  
+  .footer-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-details p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  .lang-dropdown {
+    position: relative;
+  }
+  
+  .lang-dropdown .lang-menu {
+    position: absolute;
+    top: 2rem; /* Just below the "Jezik" link */
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  
+  .lang-dropdown .lang-menu div {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  .lang-dropdown .lang-menu div:hover {
+    background-color: #f5f5f5;
+  }
+  
+
+  /* ------------------------------ */
+  /* RESPONSIVE ADJUSTMENTS         */
+  /* ------------------------------ */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .search-box {
+      flex-direction: column;
+      border-radius: 12px;
+    }
+    .search-box button {
+      margin: 0.5rem 0;
+    }
+    .two-column {
+      flex-direction: column;
+      height: auto;
+    }
+    .property-page-container {
+      flex-direction: column;
+    }
+    .property-map {
+      margin-top: 1rem;
+      height: 300px;
+    }
+  }
+  

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Detaljni Pregled Nekretnine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbarContainer"></div>
+
+  <!-- MAIN DETAIL CONTENT -->
+  <div class="detail-container" style="margin-top: 80px;">
+    <img id="detailImage" class="detail-image" src="" alt="Slika nekretnine" />
+    <div class="info">
+      <h2 id="detailTitle"></h2>
+      <div id="detailPrice" class="price"></div>
+      <div id="detailSpecs" class="details"></div>
+      <div id="detailAddress" class="address"></div>
+      <a href="#" class="btn-contact">Kontaktiraj nas</a>
+    </div>
+  </div>
+
+  <!-- MAP SECTION -->
+  <div class="detail-map" style="width: 100%; height: 400px; max-width: 1200px; margin: 2rem auto;">
+    <iframe
+      id="mapFrame"
+      width="100%"
+      height="100%"
+      frameborder="0"
+      style="border: 0;"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <!-- (Optional) FOOTER OR MODALS, same as index.html if you want consistency -->
+  <footer>
+    <div class="footer-content">
+      <h2>Kontakt informacije</h2>
+      <div class="contact-details">
+        <p><strong>Adresa ureda:</strong> Ulica Primjera 1, 10000 Zagreb</p>
+        <p><strong>Telefon:</strong> +385 99 1234 567</p>
+        <p><strong>Gmail:</strong> nekretnineprimjer@gmail.com</p>
+        <p><strong>Radno vrijeme:</strong> Pon - Pet: 09 - 17h</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+  <script>
+    // Load the external navbar
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbarContainer").innerHTML = data;
+      });
+
+    // Parse query params
+    const params       = new URLSearchParams(window.location.search);
+    const detailImage  = document.getElementById('detailImage');
+    const detailTitle  = document.getElementById('detailTitle');
+    const detailPrice  = document.getElementById('detailPrice');
+    const detailSpecs  = document.getElementById('detailSpecs');
+    const detailAddress= document.getElementById('detailAddress');
+    const mapFrame     = document.getElementById('mapFrame');
+
+    // Extract data from URL
+    const title   = params.get('address') || 'Naziv nije dostupan';
+    const price   = params.get('price')   || 'Cijena nije dostupna';
+    const beds    = params.get('beds')    || '-';
+    const baths   = params.get('baths')   || '-';
+    const address = params.get('address') || 'Adresa nije dostupna';
+    const img     = params.get('img')     || 'https://via.placeholder.com/800x400?text=Nema+Slike';
+
+    // Populate details
+    detailImage.src       = img;
+    detailTitle.innerText = title;
+    detailPrice.innerText = price;
+    detailSpecs.innerText = `${beds} kreveta • ${baths} kupatila`;
+    detailAddress.innerText = address;
+
+    // Build the map query: use the full address if valid, otherwise fallback
+    let mapQuery;
+    if (address && address !== 'Adresa nije dostupna') {
+      mapQuery = address;
+    } else {
+      mapQuery = 'Zagreb, Croatia'; 
+    }
+
+    // Set the Google Maps iframe src
+    const mapURL = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
+    mapFrame.src = mapURL;
+  </script>
+</body>
+</html>

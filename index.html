@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soto Monte - Nekretnine</title>
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-6fXfKAaNt2MSerZNdF9fBlMnD1hMkNUOMUp2u6OdaS6NgIH27mCTISF8hdge7nU3Bml84K3DYY6glKlZynkXag=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+
+  <!-- NAVBAR container -->
+  <div id="navbarContainer"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Pronađite nekretninu svojih snova.</h1>
+      <div class="search-box">
+        <input type="text" placeholder="Pretraži..." id="searchInput" />
+        <button id="searchBtn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO COLUMN SECTION #1 -->
+  <section class="two-column">
+    <div class="column-image"></div>
+    <div class="column-text">
+      <h2>Tražite nekretninu?</h2>
+      <p>Javite nam se kako bismo dogovorili sastanak.</p>
+      <a href="#kontakt" class="contact-btn" id="kontaktBtn">Kontaktiraj nas</a>
+    </div>
+  </section>
+
+  <!-- TWO COLUMN SECTION #2 -->
+  <section class="two-column">
+    <div class="column-text">
+      <h2>Prodajete kuću ili stan?</h2>
+      <p>Kontaktirajte nas preko mail-a.</p>
+      <a href="#kontakt" class="contact-btn" id="pokreniBtn">Pokreni</a>
+    </div>
+    <div class="column-image2"></div>
+  </section>
+
+  <!-- Title Bar -->
+  <div class="title-bar">
+    <div>
+      <h2>Istražite našu ponudu</h2>
+      <p class="subtitle">Pregledajte popis trenutno dostupnih nekretnina.</p>
+    </div>
+    <div class="title-bar-right">
+      <a href="kupnja.html">Pregledaj sve →</a>
+    </div>
+  </div>
+
+  <div class="cards-container-wrapper">
+    <!-- Scrollable container of cards -->
+    <div class="cards-container">
+        <!-- Example property card(s) -->
+        <div
+        class="card"
+        data-solddate="January 28, 2025"
+        data-price="$245,000"
+        data-beds="2"
+        data-baths="2"
+        data-sqft="969"
+        data-address="10150 E Virginia Ave Unit 205, Denver, CO 80247"
+        data-img="public/images/house3.jpg"
+        >
+        <img src="public/images/house3.jpg" alt="Home 1" />
+        <div class="card-content">
+            <div class="sold-date">
+            <span class="red-dot">•</span> Sold - January 28, 2025
+            </div>
+            <h3>$245,000</h3>
+            <div class="details">2 bed  2 bath  969 sqft</div>
+            <div class="address">
+            10150 E Virginia Ave Unit 205<br />
+            Denver, CO 80247
+            </div>
+        </div>
+        </div>
+        <div
+        class="card"
+        data-solddate="January 28, 2025"
+        data-price="$245,000"
+        data-beds="2"
+        data-baths="2"
+        data-sqft="969"
+        data-address="10150 E Virginia Ave Unit 205, Denver, CO 80247"
+        data-img="public/images/house3.jpg"
+        >
+        <img src="public/images/house3.jpg" alt="Home 1" />
+        <div class="card-content">
+            <div class="sold-date">
+            <span class="red-dot">•</span> Sold - January 28, 2025
+            </div>
+            <h3>$245,000</h3>
+            <div class="details">2 bed  2 bath  969 sqft</div>
+            <div class="address">
+            10150 E Virginia Ave Unit 205<br />
+            Denver, CO 80247
+            </div>
+        </div>
+        </div>
+        <div
+        class="card"
+        data-solddate="January 28, 2025"
+        data-price="$245,000"
+        data-beds="2"
+        data-baths="2"
+        data-sqft="969"
+        data-address="10150 E Virginia Ave Unit 205, Denver, CO 80247"
+        data-img="public/images/house3.jpg"
+        >
+        <img src="public/images/house5.jpg" alt="Home 1" />
+        <div class="card-content">
+            <div class="sold-date">
+            <span class="red-dot">•</span> Sold - January 28, 2025
+            </div>
+            <h3>$245,000</h3>
+            <div class="details">2 bed  2 bath  969 sqft</div>
+            <div class="address">
+            10150 E Virginia Ave Unit 205<br />
+            Denver, CO 80247
+            </div>
+        </div>
+        </div>
+        <div
+        class="card"
+        data-solddate="January 28, 2025"
+        data-price="$245,000"
+        data-beds="2"
+        data-baths="2"
+        data-sqft="969"
+        data-address="10150 E Virginia Ave Unit 205, Denver, CO 80247"
+        data-img="public/images/house3.jpg"
+        >
+        <img src="public/images/house1.jpg" alt="Home 1" />
+        <div class="card-content">
+            <div class="sold-date">
+            <span class="red-dot">•</span> Sold - January 28, 2025
+            </div>
+            <h3>$245,000</h3>
+            <div class="details">2 bed  2 bath  969 sqft</div>
+            <div class="address">
+            10150 E Virginia Ave Unit 205<br />
+            Denver, CO 80247
+            </div>
+        </div>
+        </div>
+        <div
+        class="card"
+        data-solddate="January 28, 2025"
+        data-price="$245,000"
+        data-beds="2"
+        data-baths="2"
+        data-sqft="969"
+        data-address="10150 E Virginia Ave Unit 205, Denver, CO 80247"
+        data-img="public/images/house3.jpg"
+        >
+        <img src="public/images/house4.jpg" alt="Home 1" />
+        <div class="card-content">
+            <div class="sold-date">
+            <span class="red-dot">•</span> Sold - January 28, 2025
+            </div>
+            <h3>$245,000</h3>
+            <div class="details">2 bed  2 bath  969 sqft</div>
+            <div class="address">
+            10150 E Virginia Ave Unit 205<br />
+            Denver, CO 80247
+            </div>
+        </div>
+        </div>
+
+        <!-- ... More cards if desired ... -->
+    </div>
+  </div>
+
+  <!-- Footer container -->
+  <div id="footerContainer"></div>
+
+  <!-- Contact Form Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeContactModal">&times;</button>
+      <h2>Kontaktirajte nas</h2>
+      <form id="contactForm">
+        <label for="name">Ime:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="surname">Prezime:</label>
+        <input type="text" id="surname" name="surname" required />
+
+        <label for="email">Email adresa:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Broj telefona (opcionalno):</label>
+        <input type="tel" id="phone" name="phone" />
+
+        <label for="description">Kratki opis (opcionalno):</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+
+        <button type="submit" class="submit-btn">Pošalji</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Thank You Modal -->
+  <div class="modal-overlay" id="thankYouModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeThankYouModal">&times;</button>
+      <h2>Hvala vam!</h2>
+      <p>Vaš zahtjev je primljen. Potvrda je poslana na uneseni email.</p>
+    </div>
+  </div>
+
+  <!-- Main JS -->
+  <script src="script.js"></script>
+
+  <script>
+    // Load external navbar
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(navData => {
+        document.getElementById("navbarContainer").innerHTML = navData;
+      });
+
+    // Load external footer
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(footData => {
+        document.getElementById("footerContainer").innerHTML = footData;
+      });
+
+    // Basic search redirect for hero
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.getElementById("searchInput");
+      const searchBtn   = document.getElementById("searchBtn");
+      searchBtn.addEventListener("click", () => {
+        const query = searchInput.value.trim();
+        if (query) {
+          window.location.href = "kupnja.html?search=" + encodeURIComponent(query);
+        }
+      });
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          searchBtn.click();
+        }
+      });
+    });
+    
+  </script>
+</body>
+</html>
