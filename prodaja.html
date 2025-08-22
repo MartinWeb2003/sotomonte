@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prodaja nekretnina</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Firebase compat SDKs (required by script.js) -->
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbarContainer"></div>
+
+  <!-- HERO -->
+  <section class="hero" id="prodaja-hero">
+    <div class="hero-content" style="padding: 4rem; text-align: center;">
+      <h1>Prodaja nekretnina</h1>
+      <p style="max-width:600px;margin:1rem auto;">
+        Prodajete kuću ili stan? Iskoristite našu stručnost i osigurajte brzo i sigurno zaključenje prodaje.
+      </p>
+    </div>
+  </section>
+
+  <!-- BENEFITS SECTION -->
+  <section id="prodaja-benefits" style="padding:3rem 1rem;">
+    <h2 style="text-align:center;margin-bottom:4rem;">Kako vam možemo pomoći</h2>
+    <div class="benefits-container">
+      <div class="benefit-card">
+        <img src="public/icons/chart-line-solid.svg" alt="Expert Market Knowledge" class="benefit-icon">
+        <h3>Expert Market Knowledge</h3>
+        <p>Naš tim posjeduje više od 20 godina iskustva u radu s nekretninama te razumijevanje tržišta kako bismo vam pružili najbolje.</p>
+      </div>
+      <div class="benefit-card">
+        <img src="public/icons/handshake-solid.svg" alt="Personalized Customer Service" class="benefit-icon">
+        <h3>Personalizirana Usluga</h3>
+        <p>Pružamo personaliziranu uslugu uz individualno usmjeravanje i pažnju, prilagođenu vašim potrebama i ciljevima.</p>
+      </div>
+      <div class="benefit-card">
+        <img src="public/icons/bullhorn-solid.svg" alt="Široka Promocija" class="benefit-icon">
+        <h3>Široka Promocija</h3>
+        <p>Oglašavamo vaš stan ili kuću na više platformi, čime povećavamo broj zainteresiranih kupaca.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA: simple link to contact.html -->
+  <div style="text-align:center;margin-bottom:3rem;">
+    <a href="contact.html" class="contact-btn" style="font-size:1rem;padding:0.75rem 2rem;">
+      Saznaj više
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content" id="footerContainer">
+      <h2>Kontakt informacije</h2>
+      <div class="contact-details">
+        <p><strong>Adresa ureda:</strong> Ulica Primjera 1, 10000 Zagreb</p>
+        <p><strong>Telefon:</strong> +385 99 1234 567</p>
+        <p><strong>E‑mail:</strong> nekretnineprimjer@gmail.com</p>
+        <p><strong>Radno vrijeme:</strong> Pon – Pet 09‑17h</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared bundle -->
+  <script src="script.js"></script>
+
+  <!-- Load navbar & footer fragments (no extra auth code) -->
+  <script>
+    Promise.all([
+      fetch("navbar.html").then(r=>r.text()),
+      fetch("footer.html").then(r=>r.text())
+    ]).then(([nav, foot])=>{
+      document.getElementById("navbarContainer").innerHTML = nav;
+      document.getElementById("footerContainer").innerHTML = foot;
+    });
+  </script>
+</body>
+</html>

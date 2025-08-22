@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prijava – Soto Monte</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100,900&display=swap" rel="stylesheet" />
+
+  <!-- Firebase compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Prijava</h2>
+    <p id="loginError" class="auth-error"></p>
+
+    <form id="loginForm">
+      <label for="loginEmail">Email adresa:</label>
+      <input type="email" id="loginEmail" required />
+
+      <label for="loginPassword">Lozinka:</label>
+      <input type="password" id="loginPassword" required />
+
+      <button class="submit-btn" type="submit">Prijavi se</button>
+    </form>
+
+    <p>Nemate račun? <a href="register.html">Registrirajte se</a></p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form   = document.getElementById("loginForm");
+      const errBox = document.getElementById("loginError");
+
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        errBox.textContent = "";
+
+        const email    = loginEmail.value.trim();
+        const password = loginPassword.value;
+        try {
+          await auth.signInWithEmailAndPassword(email, password);
+          location.href = "index.html"; // On success, redirect to home
+        } catch (err) {
+          errBox.textContent = "Error: invalid email or password.";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

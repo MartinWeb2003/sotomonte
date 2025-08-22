@@ -1,0 +1,1422 @@
+/* ============================= */
+/* GLOBAL & COLOR PALETTE        */
+/* ============================= */
+
+:root {
+    --clr-primary: #262341; /* Primary text / main color */
+    --clr-secondary: #F9D94A; /* Accent color (buttons, hovers) */
+    --clr-bg: #E7F5F5; /* Page background */
+    --clr-white: #ffffff;
+    --clr-black: #000000;
+    --font-body: 'Inter', system-ui, sans-serif;   
+  }
+  
+  /* Apply Helvetica globally */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    font-family: var(--font-body);
+  }
+  
+  /* Body background + default text color */
+  body {
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    overflow-x: hidden;
+    font-family: var(--font-body);
+  }
+  
+  /* ============================= */
+  /* HEADER / NAV BAR              */
+  /* ============================= */
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    background-color: var(--clr-white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .logo img {
+    height: 36px;
+    margin-right: 0.5rem;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  /* Default nav links */
+  nav a {
+    text-decoration: none;
+    color: var(--clr-primary);
+    font-weight: 500;
+    position: relative;
+  }
+  
+  /* Hover => use accent color */
+  nav a:hover {
+    color: var(--clr-secondary);
+  }
+  
+  /* ACTIVE link: underlined + remains primary, but on hover => accent color */
+  nav a.active {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: var(--clr-primary);
+  }
+  nav a.active:hover {
+    color: var(--clr-secondary);
+  }
+  
+  /* HEADER BUTTONS (login & register as link-based buttons) */
+  .header-buttons {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    align-items: center;
+  }
+  
+  /* Turn .login-btn, .signup-btn into "buttons" */
+  .header-buttons a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  /* LOGIN => filled with primary, invert on hover */
+  .login-btn {
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    border: 1px solid var(--clr-primary);
+  }
+  .login-btn:hover {
+    background-color: var(--clr-secondary);
+    color: var(--clr-white);
+    border: 1px solid var(--clr-secondary);
+  }
+  
+  /* SIGNUP => outlined, invert on hover */
+  .signup-btn {
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+  }
+  .signup-btn:hover {
+    background-color: var(--clr-secondary);
+    color: var(--clr-white);
+    border: 1px solid var(--clr-secondary);
+  }
+
+  /* ==================================================================== */
+  /* Icon buttons for mobile profile/login and logout                      */
+  /* ==================================================================== */
+  /* Base style for circular icon buttons used for the profile and logout
+     actions on small screens. The buttons have no visible border and use
+     the current primary colour for the icon. */
+  .icon-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--clr-white);
+    color: var(--clr-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /* Font Awesome icons inside the button */
+  .icon-button i {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  /* Hover state: invert colours to highlight the icon */
+  .icon-button:hover {
+    background: var(--clr-secondary);
+    color: var(--clr-white);
+  }
+  /* Slightly enlarge icon buttons on narrow screens */
+  @media (max-width: 880px) {
+    .mobile-icons .icon-button {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  
+  /* ============================= */
+  /* HERO SECTION                  */
+  /* ============================= */
+  
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background: url('public/images/house1.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--clr-white);
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    padding: 2rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  }
+  
+  /* Search box in hero */
+  .search-box {
+    display: flex;
+    background-color: var(--clr-white);
+    border-radius: 50px;
+    overflow: hidden;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .search-box input {
+    border: none;
+    padding: 0.75rem 1rem;
+    flex: 1;
+    outline: none;
+    font-size: 1rem;
+    color: var(--clr-primary);
+  }
+  .search-box button {
+    background-color: var(--clr-white);
+    border: none;
+    padding: 0 1rem;
+    cursor: pointer;
+  }
+  .search-box button i {
+    width: 24px;
+    height: 24px;
+    color: var(--clr-primary);
+  }
+  
+  /* ============================= */
+  /* TWO-COLUMN SECTIONS           */
+  /* ============================= */
+  
+  .two-column {
+    display: flex;
+    width: 100%;
+    height: 600px;
+    margin-top: 50px;
+    margin-bottom: 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  .column-image {
+    flex: 1.1;
+    background: url("public/images/house2.jpg") center/cover no-repeat;
+  }
+  
+  .column-image2 {
+    flex: 1.1;
+    background: url("public/images/house3.jpg") center/cover no-repeat;
+  }
+  
+  .column-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--clr-white);
+  }
+  
+  .column-text h2 {
+    margin-bottom: 1rem;
+    color: var(--clr-primary);
+  }
+  
+  .column-text p {
+    margin-bottom: 1.5rem;
+    color: var(--clr-primary);
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /* Alternate colour scheme for the second two-column section on the
+     homepage. This inverts the background and text colours on the
+     .column-text and adjusts the contact button styling so it remains
+     readable. Using :nth-of-type selects the second .two-column element
+     within its parent container. */
+  .two-column:nth-of-type(2) .column-text {
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+  }
+  .two-column:nth-of-type(2) .column-text h2,
+  .two-column:nth-of-type(2) .column-text p {
+    color: var(--clr-white);
+  }
+  .two-column:nth-of-type(2) .column-text .contact-btn {
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    border: 2px solid var(--clr-white);
+  }
+  .two-column:nth-of-type(2) .column-text .contact-btn:hover {
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    border-color: var(--clr-primary);
+  }
+  
+  /* “Contact” type button used in columns etc. */
+  .contact-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    background: var(--clr-primary);
+    color: var(--clr-white);
+    border: 2px solid var(--clr-primary);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    width: 200px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  .contact-btn:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    border: 2px solid var(--clr-primary);
+  }
+  
+  /* ============================= */
+  /* TITLE BAR / HEADINGS          */
+  /* ============================= */
+  
+  .title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding: 10px 30px;
+  }
+  
+  .title-bar h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--clr-primary);
+  }
+  
+  .title-bar p {
+    color: #555;
+    margin-top: 0.25rem;
+  }
+  
+  .title-bar-right a {
+    text-decoration: none;
+    color: var(--clr-primary);
+    font-weight: 600;
+  }
+  .title-bar-right a:hover {
+    color: var(--clr-secondary);
+  }
+  
+  /* Sub-heading */
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--clr-primary);
+  }
+  
+  /* ============================= */
+  /* SCROLLABLE CARDS (INDEX.HTML) */
+  /* ============================= */
+  
+  .cards-container-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 2rem;
+  }
+  
+  .cards-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 4rem;
+    padding-left: 5px;
+    position: relative;
+  }
+  .cards-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .cards-container-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100%;
+    pointer-events: none;
+    /* Fade-out gradient on the right side so cards appear to fade away on index.html */
+    background: linear-gradient(to left,
+              rgba(255, 255, 255, 1) 0%,   /* full white at the very right */
+              rgba(255, 255, 255, 0) 100%  /* transparent towards the left */);
+  }
+  
+  /* Single card */
+  .card {
+    min-width: 240px;
+    width: 380px;
+    background-color: var(--clr-white);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .card:hover {
+    filter: brightness(0.95);
+  }
+  .card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+  .card-content {
+    padding: 1rem;
+  }
+  .sold-date {
+    font-size: 0.9rem;
+    color: var(--clr-primary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .red-dot {
+    color: #c00;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .card-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--clr-primary);
+    font-weight: 700;
+  }
+  .card-content .details {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+  .card-content .address {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  /* ============================= */
+  /* DETAIL VIEW (detailedView.html) */
+  /* ============================= */
+  
+  .detail-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px;
+  }
+  .detail-image {
+    width: 60%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .info h2 {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    color: var(--clr-primary);
+  }
+  .price {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--clr-primary);
+    font-weight: bold;
+  }
+  .details {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  .address {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #777;
+  }
+  .btn-contact {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    width: 40%;
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--clr-primary);
+  }
+  .btn-contact:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    border: 2px solid var(--clr-primary);
+  }
+  .detail-map {
+    width: 100%;
+    height: 400px;
+    max-width: 1200px;
+    margin: 2rem auto;
+    border: none;
+    display: block;
+  }
+  
+  /* ============================= */
+  /* KUPNJA.HTML GRID + MAP        */
+  /* ============================= */
+  
+  .property-page-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  .property-list {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .property-card {
+    background-color: var(--clr-white);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .property-card:hover {
+    filter: brightness(0.97);
+  }
+  .property-card:hover img {
+    transform: scale(1.05);
+  }
+  .property-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .property-card .card-content {
+    padding: 1rem;
+  }
+  
+  /* The three dots (menu) on property cards */
+  .dots-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--clr-primary);
+  }
+  .dots-menu {
+    display: none;
+    position: absolute;
+    top: 2rem;
+    right: 0.5rem;
+    background-color: var(--clr-white);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+  }
+  .carousel-container img {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .slide {
+    position: relative;
+    text-align: center;
+  }
+  .slide img {
+    object-fit: cover;
+    width: 100%;
+    /* if you want a fixed height, do: height: 400px; */
+  }
+  
+  
+  .dots-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--clr-primary);
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .dots-menu a:last-child {
+    border-bottom: none;
+  }
+  .dots-menu a:hover {
+    background-color: #f5f5f5;
+  }
+  .property-card.show-menu .dots-menu {
+    display: block;
+  }
+  .property-map {
+    flex: 1.2;
+    min-width: 300px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    overflow: hidden;
+    height: auto;
+  }
+  
+  /* ============================= */
+  /* FOOTER (from footer.html)     */
+  /* ============================= */
+  
+  footer {
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    padding: 2rem 1rem;
+  }
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .footer-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--clr-primary);
+  }
+  .contact-details p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: var(--clr-primary);
+  }
+  
+  /* ============================= */
+  /* MODALS (CONTACT & THANK YOU)  */
+  /* ============================= */
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .modal-content {
+    background-color: var(--clr-white);
+    padding: 2rem;
+    border-radius: 6px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #666;
+  }
+  .close-btn:hover {
+    color: var(--clr-primary);
+  }
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-content label {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--clr-primary);
+  }
+  .modal-content input,
+  .modal-content textarea {
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .modal-content textarea {
+    resize: vertical;
+  }
+  .submit-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .submit-btn:hover {
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+  }
+  
+  /* ============================= */
+  /* AUTH PAGES (LOGIN & REGISTER) */
+  /* ============================= */
+  
+  .auth-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 2rem;
+    background: var(--clr-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    text-align: center;
+  }
+  .auth-container h2 {
+    margin-bottom: 1rem;
+    color: var(--clr-primary);
+  }
+  .auth-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  .auth-container label {
+    margin-top: 1rem;
+    font-weight: bold;
+    text-align: left;
+    color: var(--clr-primary);
+  }
+  .auth-container input {
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .auth-container p {
+    margin-top: 1rem;
+    color: var(--clr-primary);
+  }
+  .auth-container a {
+    color: var(--clr-secondary);
+    text-decoration: none;
+  }
+  .auth-container a:hover {
+    text-decoration: underline;
+  }
+
+  
+  /* ANIMATION
+  */
+  /* === SCROLL-REVEAL === */
+.hidden-left,
+.hidden-right {
+  opacity: 0;
+  filter: blur(4px);
+  transition: opacity .6s ease-out, transform .6s ease-out, filter .6s ease-out;
+}
+
+/* start 60 px off-screen in the right direction */
+.hidden-left  { transform: translateX(-60px); }
+.hidden-right { transform: translateX( 60px); }
+
+/* once .show is added we’re visible */
+.show {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+
+
+/* respect users who prefer no animation */
+@media (prefers-reduced-motion: reduce) {
+  .hidden-left,
+  .hidden-right,
+  .show {
+    transition: none;
+    transform: none;
+    filter: none;
+  }
+}
+
+
+
+  /* CONTACT MODULE */
+
+/* ───────── KONTAKT STRANICA ───────── */
+.contact-wrapper{
+  max-width:480px;
+  margin:5rem auto 6rem;
+  text-align:center;
+  color:var(--clr-primary);
+}
+.contact-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--clr-secondary);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;
+}
+.contact-icon svg{width:38px;height:38px;stroke:var(--clr-primary);}
+.contact-subtitle{
+  font-weight:500;line-height:1.5;
+  margin:0 auto 2.5rem;max-width:34ch;
+}
+
+.contact-card{
+  background:var(--clr-primary);
+  padding:2.5rem 2rem 3rem;
+  border-radius:20px;
+  color:var(--clr-white);
+  display:flex;flex-direction:column;gap:1.8rem;
+}
+.contact-card label{
+  font-size:.8rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.4px;
+  display:block;margin-bottom:.25rem;
+}
+.contact-card input,
+.contact-card textarea{
+  width:100%;background:transparent;border:0;
+  border-bottom:1px solid #ffffff99;
+  color:var(--clr-white);
+  padding:.25rem 0 .5rem;font-size:.95rem;outline:none;
+}
+.contact-card input::placeholder,
+.contact-card textarea::placeholder{color:#ffffff88;}
+
+.contact-card .submit-btn{
+  margin-top:.8rem;
+  background:var(--clr-secondary);
+  color:var(--clr-primary);
+  border:none;border-radius:50px;
+  padding:.6rem 0;font-weight:600;cursor:pointer;
+  transition:opacity .25s ease;
+  align-self: center;
+  transition: all 0.2s;
+}
+.contact-card .submit-btn:hover{
+  opacity:.85;
+  background:var(--clr-white);
+}
+
+/* ───────── NAVBAR: universal greeting & button ───────── */
+.header-buttons{
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  font-family:var(--font-body);
+  font-weight:600;
+}
+.header-buttons .welcome{
+  color:var(--clr-primary);
+  white-space:nowrap;
+}
+/* uses the old .signup-btn visual language */
+.logout-btn{
+  background-color:var(--clr-white);
+  color:var(--clr-primary);
+  border:2px solid var(--clr-primary);
+  padding:0.45rem 2rem;
+  border-radius:26px;
+  font-weight:600;
+  cursor:pointer;
+  transition:background .25s,color .25s;
+}
+.logout-btn:hover{background:var(--clr-primary);color:var(--clr-white);}
+.signup-btn{
+  background-color: var(--clr-white);
+                  color: var(--clr-primary);
+                  border: 1px solid var(--clr-primary);
+                  padding: 0.5rem 1.5rem;
+                  border-radius: 20px;
+                  font-weight: 600;
+                  font-size: 0.95rem;
+                  cursor: pointer;
+}
+.signup-btn:hover,
+.logout-btn:hover{filter:brightness(.92);}
+
+
+@media (prefers-reduced-motion:reduce){
+  .contact-wrapper,.contact-card *,.contact-icon,
+  .contact-icon svg{transition:none !important;}
+}
+
+
+/* Minimal extra CSS for scroll-snap-based carousel */
+
+    /* The wrapper that holds all slides horizontally */
+    .carousel-track {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      /* no vertical scroll */
+      overflow-y: hidden;
+      /* smooth scrolling if desired: */
+      scroll-behavior: smooth;
+      width: 100%;
+    }
+
+    /* Each slide is a separate container, forced to the same W/H */
+    .carousel-slide {
+      flex: 0 0 auto;        /* no shrinking or growing, exact size */
+      scroll-snap-align: center;
+      width: 600px;          /* fixed width */
+      height: 400px;         /* fixed height */
+      margin-right: 20px;    /* spacing between slides if you want */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f0;   /* fallback background if image not loaded */
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;     /* keep aspect ratio, fill container */
+    }
+
+    /* Dot container */
+    .carousel-dots {
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .carousel-dots span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background-color: #ccc;
+      cursor: pointer;
+    }
+    .carousel-dots .active-dot {
+      background-color: #333;
+    }
+
+    /* Arrow buttons */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      cursor: pointer;
+      user-select: none;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      padding: 0.2rem 0.5rem;
+      z-index: 5;
+    }
+    #arrowLeft { left: 10px; }
+    #arrowRight { right: 10px; }
+
+/* ───── HERO (prodaja page) ───── */
+#prodaja-hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;                            /* center content */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  /* base colour in case images fail to load */
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+}
+
+/* ensure heading and paragraph inherit colour and have subtle shadow */
+#prodaja-hero h1,
+#prodaja-hero p {
+  color: var(--clr-white);
+  text-shadow: 0 3px 6px rgba(0, 0, 0, .5);
+}
+
+/* slides that form the fading background */
+#prodaja-hero .hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+/* ensure the content appears above the slides */
+#prodaja-hero .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------
+   PRODaja page: Benefits section
+   Defines layout and appearance for the benefit cards
+----------------------------------------------------*/
+.benefits-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefit-card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 320px;
+  text-align: center;
+  padding: 1.5rem;
+  border: 4px solid var(--clr-primary);
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: var(--clr-white);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.benefit-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.benefit-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.benefit-card p {
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 880px) {
+  .benefits-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .benefit-card {
+    width: 65%;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ───── FEATURE CARDS: scroll‑in, staggered ───── */
+#prodaja-features.feature-hidden > .feature-item{
+  opacity:0;
+  transform:translateY(40px);
+}
+
+#prodaja-features.show-features  > .feature-item{
+  opacity:1;
+  transform:translateY(0);
+  transition:opacity .6s ease-out, transform .6s ease-out;
+}
+
+/* stagger: each successive child waits +0.15 s */
+#prodaja-features.show-features > .feature-item:nth-child(1){transition-delay:0s}
+#prodaja-features.show-features > .feature-item:nth-child(2){transition-delay:.15s}
+#prodaja-features.show-features > .feature-item:nth-child(3){transition-delay:.30s}
+#prodaja-features.show-features > .feature-item:nth-child(4){transition-delay:.45s}
+/* add more lines if you ever add more than four cards */
+
+/* red inline error under Prijava / Registracija */
+.auth-error{
+  color:#c12626;
+  font-size:.9rem;
+  margin-bottom:.5rem;
+  min-height:1.2em;     /* keeps layout stable when empty */
+}
+
+  
+  /* RESPONSIVE ADJUSTMENTS        */
+  /* ============================= */
+  
+  /* Group hamburger + logo on left */
+.mobile-header-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Hamburger icon style */
+.hamburger {
+  display: none;               /* hide hamburger by default (desktop) */
+  font-size: 1.5rem;           /* make it easily tappable */
+  color: var(--clr-primary);   /* match nav link color */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;          /* space between hamburger and logo text */
+  /* Ensure hamburger stays above overlay when open */
+  position: relative;
+  z-index: 1100;
+}
+
+/* Base styles for hamburger and responsive containers */
+.hamburger {
+  display: none;                /* Hidden by default (only shown on mobile) */
+  font-size: 1.5rem;
+  color: var(--clr-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  /* Ensure hamburger is on top of overlay when open */
+  position: relative;
+  z-index: 1100;
+}
+.mobile-icons { 
+  display: none;               /* Hide mobile icon container by default on desktop */
+}
+.sidebar-nav {
+  display: none;               /* Hide sidebar nav by default (visible on mobile when toggled) */
+}
+
+/* ───── Carousel arrows: centred icon inside perfect circle ──── */
+.carousel-arrow{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: none;
+  color: #ffffff;       /* use your main brand colour */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;               /* ► or ◄ icon font-size */
+  cursor: pointer;
+  transition: background .2s;
+  user-select: none;
+  border: none;
+}
+
+
+/* ───── Image lightbox overlay ───── */
+#imageLightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: none;                  /* shown via JS */
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+#imageLightbox img{
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 6px 25px rgba(0,0,0,.5);
+  border-radius: 6px;
+}
+#lightboxClose{
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+
+
+/* ----- Responsive Navbar (880px and below) ----- */
+@media (max-width: 880px) {
+  /* Hide desktop nav and header-buttons on mobile */
+  header nav { display: none; }                 /* hide main menu links on small screens */
+  .header-buttons { display: none; }            /* hide desktop login/register or welcome text on mobile */
+  .logo-text { display: none; }                 /* hide the text part of the logo on mobile to save space */
+  /* Increase the header height on mobile for better spacing */
+  header {
+    padding: 1rem 1rem;
+    min-height: 60px;
+  }
+
+  /* Hide the logo image on mobile; only the hamburger remains */
+  .logo img { display: none; }
+
+  /* Show the hamburger and mobile icons container on mobile */
+  .hamburger { display: inline-block; font-size: 1.5rem; margin-right: 1rem; margin-left: 5px; }
+  .mobile-icons { display: flex; align-items: center; gap: 1rem; }
+
+  /* Position and style the sidebar (off-canvas menu) */
+  .sidebar-nav {
+    position: fixed;
+    top: 0; left: 0;
+    height: 100%;
+    width: 250px;                        /* Sidebar width */
+    background: var(--clr-white);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    padding: 1rem;
+    transform: translateX(-100%);        /* start off-screen to the left */
+    transition: transform 0.3s ease;
+    z-index: 1001;
+    /* Flex column layout for sidebar links */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .sidebar-nav.open { 
+    transform: translateX(0);           /* slide in when .open is added */
+  }
+  .sidebar-nav ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* Make the last list item (Odjava) stick to the bottom of the sidebar */
+    flex: 1;
+  }
+  .sidebar-nav ul li:last-child {
+    margin-top: auto;
+  }
+  .sidebar-nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: var(--clr-primary);
+    font-weight: 500;
+    padding: 0.5rem 0;
+  }
+  .sidebar-nav ul li a:hover {
+    color: var(--clr-secondary);
+  }
+
+  /* Overlay that covers the page when sidebar is open */
+  #sidebarOverlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);    /* semi-transparent black overlay */
+    z-index: 1000;
+  }
+  #sidebarOverlay.open {
+    display: block;
+  }
+
+  /* Hamburger icon: use pseudo-elements to create the 3 bars and transform into X */
+  .hamburger {
+    font-size: 0;                      /* hide the actual text (we'll use pseudo-elements for icon) */
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  .hamburger::before, .hamburger::after {
+    content: '';                       /* will be set to icons via Unicode */
+    font-size: 1.5rem;
+    color: var(--clr-primary);
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease;
+  }
+  .hamburger::before {
+    content: '\2630';                  /* Unicode for ☰ (hamburger menu icon) */
+    opacity: 1;
+  }
+  .hamburger::after {
+    content: '\00D7';                  /* Unicode for × (close icon) */
+    opacity: 0;
+  }
+  .hamburger.open::before { opacity: 0; }
+  .hamburger.open::after  { opacity: 1; }
+
+  /* ============================================= */
+  /* Overrides for dynamic navbar on small screens */
+  /* Show full navigation with reduced sizes and    */
+  /* prevent hiding of elements.                   */
+  /* ============================================= */
+  /* Ensure nav remains visible; hide text buttons and welcome */
+  header nav { display: block !important; }
+  .header-buttons { display: none !important; }
+  .logo-text { display: none !important; }
+  .logo img { display: inline-block !important; height: 28px !important; margin-right: 0.4rem; }
+
+  /* Hide the welcome greeting text on mobile */
+  .welcome { display: none !important; }
+
+  /* Hide hamburger and sidebar/overlay; show mobile icons */
+  .hamburger { display: none !important; }
+  .mobile-icons { display: flex !important; align-items: center; gap: 1rem; }
+  .sidebar-nav { display: none !important; }
+  #sidebarOverlay { display: none !important; }
+
+  /* Adjust header layout for small screens */
+  header {
+    padding: 0.5rem 1rem !important;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  /* Nav list wraps and reduced gap */
+  nav ul {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Reduce font size of nav links */
+  nav a {
+    font-size: 0.85rem;
+  }
+
+  /* Reduce size and padding of header buttons */
+  .header-buttons a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /* Index cards: increase card width on small screens so users can scroll
+     horizontally to view larger previews. Each card becomes 500px wide
+     when the viewport is 880px or below. */
+  .cards-container .card {
+    width: 300px;
+    min-width: 300px;
+  }
+
+  /* ---------------------------------------------------------------------- */
+  /* Two-column sections: stack content and hide images on small screens */
+  .two-column {
+    flex-direction: column;
+    height: 400px;
+  }
+  /* Hide the large background images on mobile to save space */
+  .two-column .column-image,
+  .two-column .column-image2 {
+    display: none;
+  }
+  /* Center the text block vertically and horizontally */
+  .two-column .column-text {
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  /* Mobile header left container (hamburger + logo) */
+  .mobile-header-left { 
+    display: flex;
+    align-items: center;
+  }
+
+  /* Style the mobile logout icon as a circular button */
+  .mobile-icons .logout-icon {
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: var(--clr-white);
+    color: var(--clr-primary);
+    border: none;
+    font-size: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-icons .logout-icon:hover {
+    background: var(--clr-secondary);
+    color: var(--clr-white);
+    border-color: var(--clr-secondary);
+  }
+
+  .hero h1{
+    font-size: 1.6rem;
+  }
+
+  p .subtitle{
+    display: none;
+  }
+
+}
+
+/* Stack the carousel and info on narrower screens */
+@media (max-width: 1200px) {
+  .detail-container {
+    flex-direction: column;
+    align-items: center;  
+    width: 100%;       /* center the elements horizontally */
+  }
+
+  /* Make the carousel occupy its own full-width row */
+  .detail-container .carousel-wrapper {
+    width: 100%;
+    margin-bottom: 2rem;         /* adds spacing below the carousel row */
+  }
+
+  .detail-container .carousel-slide {
+    width: 100%;
+    height: auto;
+    margin-right: 1rem;
+  }
+
+  /* Ensure the info section spans the full width */
+  .detail-container .info {
+    width: 100%;
+    align-items: center;
+  }
+  .detail-container .btn-contact{
+    text-align: center;
+    width: 220px;
+  }
+  
+}
+

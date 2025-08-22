@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detaljni pregled nekretnine</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-storage-compat.js"></script>
+
+  <!-- shared logic (initialises Firebase once for the whole page) -->
+  <script src="script.js"></script>
+
+  <!-- extra CSS for the picture carousel -->
+  <style>
+    .carousel-track{display:flex;overflow-x:scroll;scroll-snap-type:x mandatory;width:80%}
+    .carousel-slide{flex:0 0 auto;scroll-snap-align:center;width:600px;height:400px;margin-right:20px}
+    .carousel-slide img{width:100%;height:100%;object-fit:cover}
+    .carousel-dots{text-align:center;margin-top:.5rem}
+    .carousel-dots span{display:inline-block;width:10px;height:10px;margin:0 4px;border-radius:50%;background:#ccc;cursor:pointer}
+    .active-dot{background:#333}
+    .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:1.8rem;cursor:pointer;background:rgba(255,255,255,.5);border-radius:50%;padding:.2rem .5rem;user-select:none;z-index:5}
+    #arrowLeft{left:10px}#arrowRight{right:10px}
+  </style>
+</head>
+<body>
+
+  <div id="navbarContainer"></div>
+
+  <!-- MAIN CONTENT -->
+  <div class="detail-container" style="margin-top:80px;">
+    <!-- carousel -->
+    <div class="carousel-wrapper" style="position:relative;width:60%;">
+      <div id="arrowLeft"  class="carousel-arrow">&#10094;</div>
+      <div id="arrowRight" class="carousel-arrow">&#10095;</div>
+      <div class="carousel-track" id="carouselTrack"></div>
+      <div class="carousel-dots"  id="carouselDots"></div>
+    </div>
+
+    <!-- info -->
+    <div class="info">
+      <h2 id="detailTitle"></h2>
+      <div id="detailPrice"   class="price"></div>
+      <div id="detailSpecs"   class="details"></div>
+      <div id="detailAddress" class="address"></div>
+      <a href="contact.html" class="btn-contact">Kontaktiraj nas</a>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <iframe id="mapFrame" class="detail-map"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Zagreb+Croatia&output=embed"></iframe>
+
+
+  
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content" id="footerContainer"></div>
+  </footer>
+
+  
+  <!-- PAGE‑SPECIFIC SCRIPT (requires global db from script.js) -->
+  <script>
+    /* inject navbar + footer */
+    Promise.all([
+      fetch("navbar.html").then(r=>r.text()),
+      fetch("footer.html").then(r=>r.text())
+    ]).then(([nav,foot])=>{
+      document.getElementById("navbarContainer").innerHTML = nav;
+      document.getElementById("footerContainer").innerHTML = foot;
+    });
+
+    /* refs */
+    const track = document.getElementById("carouselTrack");
+    const dots  = document.getElementById("carouselDots");
+    const left  = document.getElementById("arrowLeft");
+    const right = document.getElementById("arrowRight");
+
+    /* URL params */
+    const p     = new URLSearchParams(location.search);
+    const docId = p.get("docId");
+
+    if(docId){
+      db.doc(`properties/${docId}`).get().then(s=>{
+        if(!s.exists){alert("Nekretnina nije pronađena");return;}
+        render(s.data());
+      });
+    }else{
+      /* fallback for old links */
+      render({
+        address: p.get("address") || "N/A",
+        price  : p.get("price")   || "-",
+        bedAmount : p.get("beds") || "-",
+        bathAmount: p.get("baths")|| "-",
+        images: (p.get("img")||"").split("|").filter(Boolean)
+      });
+    }
+
+    function render(d){
+      const images = (d.images?.length ? d.images : [PLACEHOLDER])
+                      .map(toHttps);      // ★ convert every src ★
+
+      track.innerHTML = dots.innerHTML = "";
+      images.forEach((url,i)=>{
+        track.insertAdjacentHTML("beforeend",
+          `<div class="carousel-slide"><img src="${url}" alt=""></div>`);
+        dots.insertAdjacentHTML("beforeend",
+          `<span class="${i?"":"active-dot"}"></span>`);
+      });
+
+      /* arrows & dots */
+      const slides=[...track.children], indicators=[...dots.children];
+      let idx=0;
+      left .onclick=()=>go((idx?idx:slides.length)-1);
+      right.onclick=()=>go((idx+1)%slides.length);
+      indicators.forEach((dot,i)=>dot.onclick=()=>go(i));
+
+      function go(i){
+        track.scrollTo({left:(600+20)*i,behavior:"smooth"});
+        indicators[idx].classList.remove("active-dot");
+        indicators[i].classList.add("active-dot");
+        idx=i;
+      }
+
+      /* basic info */
+      document.getElementById("detailTitle").textContent   = d.address;
+      document.getElementById("detailPrice").textContent   = `${d.price||"-"}`;
+      document.getElementById("detailSpecs").textContent   = `${d.bedAmount||"-"} kreveta • ${d.bathAmount||"-"} kupatila`;
+      document.getElementById("detailAddress").textContent = d.address;
+
+      /* map */
+      if(d.address) document.getElementById("mapFrame").src =
+        `https://www.google.com/maps?q=${encodeURIComponent(d.address)}&output=embed`;
+    }
+  </script>
+
+  
+</body>
+</html>

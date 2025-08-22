@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kupnja - Trenutno Dostupne Nekretnine</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Load Font Awesome for icons (e.g., profile/logout icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+
+  <div id="navbarContainer"></div>
+  
+  <div class="title-bar" style="margin-top: 2rem;">
+    <div>
+      <h2>Kupnja nekretnine</h2>
+      <p class="subtitle">Trenutno dostupne nekretnine za kupnju.</p>
+    </div>
+    <div class="title-bar-right" id="searchInfo"></div>
+  </div>
+
+  <div class="title-bar">
+    <div class="kupnja-search-container">
+      <div class="search-box">
+        <input type="text" placeholder="Pretraži ovdje..." id="searchInputKupnja" />
+        <button id="searchBtnKupnja" type="button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="property-page-container">
+    <div class="property-list" id="propertyList"></div>
+
+  </div>
+
+  <footer>
+    <div class="footer-content" id="footerContainer">
+      <h2>Kontakt informacije</h2>
+      <div class="contact-details">
+        <p><strong>Adresa ureda:</strong> Ulica Primjera 1, 10000 Zagreb</p>
+        <p><strong>Telefon:</strong> +385 99 1234 567</p>
+        <p><strong>Gmail:</strong> nekretnineprimjer@gmail.com</p>
+        <p><strong>Radno vrijeme:</strong> Pon - Pet: 09 - 17h</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Load navbar & footer fragments
+    fetch("navbar.html").then(res => res.text()).then(data => {
+      document.getElementById("navbarContainer").innerHTML = data;
+    });
+    fetch("footer.html").then(res => res.text()).then(data => {
+      document.getElementById("footerContainer").innerHTML = data;
+    });
+
+    const propertyList = document.getElementById("propertyList");
+    const searchBox    = document.getElementById("searchInputKupnja");
+    const searchInfo   = document.getElementById("searchInfo");
+    let allDocs = [];
+
+    // Firestore listener
+    db.collection("properties").onSnapshot(snapshot => {
+      allDocs = [];
+      snapshot.forEach(doc => allDocs.push({ id: doc.id, data: doc.data() }));
+      // If a query param exists, filter immediately; otherwise render all
+      const initial = new URLSearchParams(location.search).get("search");
+      if (initial) {
+        searchBox.value = initial;
+        doKupnjaSearch();               // will render filtered + set searchInfo
+      } else {
+        searchInfo.textContent = "";
+        renderProperties(allDocs);
+      }
+    });
+
+      function renderProperties(docsArr) {
+        propertyList.innerHTML = "";
+        docsArr.forEach(({ id, data }) => {
+          const firstImg = toHttps(data.images?.[0]) || "https://via.placeholder.com/400x200?text=No+Image";
+
+          const card = document.createElement("div");
+          card.className = "property-card";
+          card.dataset.docid = id;
+          card.innerHTML = `
+            <img src="${firstImg}" alt="Preview" />
+            <div class="card-content">
+              <div class="sold-date"><span class="red-dot">•</span> ${data.isSold ? "SOLD" : "For Sale"}</div>
+              <h3>$${data.price || "-"}</h3>
+              <div class="details">${data.bedAmount || "-"} bed &nbsp;&nbsp; ${data.bathAmount || "-"} bath</div>
+              <div class="address">${data.address || "No address"}<br>${data.cityName || ""}</div>
+            </div>`;
+          card.onclick = () => location.href = `detailedView.html?docId=${id}`;
+          propertyList.appendChild(card);
+        });
+      }
+
+    document.getElementById("searchBtnKupnja").addEventListener("click", (e) => {
+      e.preventDefault();
+      doKupnjaSearch();
+    });
+    document.getElementById("searchInputKupnja").addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        doKupnjaSearch();
+      }
+    });
+
+    function doKupnjaSearch() {
+      const q = searchBox.value.trim().toLowerCase();
+      if (!q) {
+        searchInfo.textContent = "";
+        renderProperties(allDocs);
+        return;
+      }
+      const filtered = allDocs.filter(({ data }) => {
+        const combo = ((data.address || "") + " " + (data.cityName || "")).toLowerCase();
+        return combo.includes(q);
+      });
+      searchInfo.textContent = `Rezultati za: "${searchBox.value}"`;
+      renderProperties(filtered);
+    }
+  </script>
+</body>
+</html>

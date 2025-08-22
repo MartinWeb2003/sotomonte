@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registracija – Soto Monte</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Firebase compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Registracija</h2>
+    <p id="signupError" class="auth-error"></p>
+
+    <form id="signupForm">
+      <label for="signupName">Ime:</label>
+      <input type="text" id="signupName" required>
+
+      <label for="signupEmail">Email adresa:</label>
+      <input type="email" id="signupEmail" required>
+
+      <label for="signupPassword">Lozinka:</label>
+      <input type="password" id="signupPassword" required>
+
+      <button class="submit-btn" type="submit">Registriraj se</button>
+    </form>
+
+    <p>Već imate račun? <a href="login.html">Prijavite se</a></p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form   = document.getElementById("signupForm");
+      const errBox = document.getElementById("signupError");
+
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        errBox.textContent = "";
+
+        const name      = signupName.value.trim();
+        const email     = signupEmail.value.trim();
+        const password  = signupPassword.value;
+
+        try {
+          const cred = await auth.createUserWithEmailAndPassword(email, password);
+          await db.doc(`users/${cred.user.uid}`).set({
+            name,
+            email,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+          location.href = "index.html";              // auto‑login + redirect
+        } catch (err) {
+          let msg = "Something went wrong";
+          switch (err.code) {
+            case "auth/weak-password":
+              msg = "Error: weak password";
+              break;
+            case "auth/email-already-in-use":
+              msg = "Error: email already in use";
+              break;
+          }
+          errBox.textContent = msg;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

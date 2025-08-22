@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soto Monte – Nekretnine</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Firebase compat SDKs (needed by script.js) -->
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbarContainer"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Pronađite nekretninu svojih snova.</h1>
+      <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Pretraži…" />
+        <button id="searchBtn" type="button">
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO-column sections (unchanged) -->
+  <section class="two-column">
+    <div class="column-image hidden-left"></div>
+    <div class="column-text hidden-right">
+      <h2>Tražite nekretninu?</h2>
+      <p>Javite nam se kako bismo dogovorili sastanak.</p>
+      <a href="contact.html" class="contact-btn">Kontaktiraj nas</a>
+    </div>
+  </section>
+
+  <section class="two-column">
+    <div class="column-text hidden-left">
+      <h2>Prodajete kuću ili stan?</h2>
+      <p>Kontaktirajte nas preko mail‑a.</p>
+      <a href="contact.html" class="contact-btn">Pokreni</a>
+    </div>
+    <div class="column-image2 hidden-right"></div>
+  </section>
+
+  <!-- TITLE BAR -->
+  <div class="title-bar">
+    <div>
+      <h2>Istražite našu ponudu</h2>
+      <p class="subtitle">Pregledajte popis trenutno dostupnih nekretnina.</p>
+    </div>
+    <div class="title-bar-right"><a href="kupnja.html">Pregledaj sve →</a></div>
+  </div>
+
+  <!-- INDEX CARDS -->
+  <div class="cards-container-wrapper">
+    <div class="cards-container" id="indexProperties"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footerContainer"></div>
+
+  <!-- Shared bundle -->
+  <script src="script.js"></script>
+
+  <!-- Load navbar & footer — no extra inline JS -->
+  <script>
+    Promise.all([
+      fetch("navbar.html").then(r=>r.text()),
+      fetch("footer.html").then(r=>r.text())
+    ]).then(([nav, foot])=>{
+      document.getElementById("navbarContainer").innerHTML = nav;
+      document.getElementById("footerContainer").innerHTML = foot;
+    });
+  </script>
+</body>
+</html>

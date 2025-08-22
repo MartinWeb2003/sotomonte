@@ -1,0 +1,58 @@
+<!-- Include Font Awesome CSS so icons are available in all pages -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<header>
+  <!-- Left side: Hamburger + Logo (clicking logo returns to homepage) -->
+  <div class="mobile-header-left">
+    <!-- Hamburger menu button (visible on mobile, hidden on desktop) -->
+    <button id="hamburger" class="hamburger" aria-label="Toggle menu" type="button">
+      &#9776;
+    </button>
+    <div class="logo" onclick="window.location.href='index.html'">
+      <img src="public/images/logo.jpg" alt="Logo" />
+      <span class="logo-text">Soto Monte</span>
+    </div>
+  </div>
+
+  <!-- Main navigation links (shown on desktop, hidden on mobile) -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="kupnja.html">Kupnja</a></li>
+      <li><a href="prodaja.html">Prodaja</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- Desktop header buttons (Login/Register or Welcome/Logout text) -->
+  <div class="header-buttons">
+    <a href="login.html" class="login-btn">Prijava</a>
+    <a href="register.html" class="signup-btn">Registracija</a>
+    <!-- If logged in, this section will be replaced via script with "Dobrodošli, Name" and an Odjava button -->
+  </div>
+
+  <!-- Mobile icons (shown on mobile only) -->
+  <div class="mobile-icons">
+    <!-- Profile/Login icon (shown when not logged in) -->
+    <a href="login.html" id="mobileProfileIcon" class="icon-button profile-icon" aria-label="Login">
+      <i class="fa-solid fa-user"></i>
+    </a>
+    <!-- Logout icon (shown when logged in) -->
+    <a href="#" id="mobileLogoutIcon" class="icon-button logout-icon" aria-label="Logout">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </a>
+  </div>
+</header>
+
+<!-- Sidebar menu (slides in from the left on mobile; hidden on desktop) -->
+<nav id="sidebarNav" class="sidebar-nav">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="kupnja.html">Kupnja</a></li>
+    <li><a href="prodaja.html">Prodaja</a></li>
+    <li><a href="contact.html">Kontakt</a></li>
+    <li><a href="#" id="sidebarLogout">Odjava</a></li> <!-- Logout link (visible only if logged in) -->
+  </ul>
+</nav>
+
+<!-- Overlay (shown when sidebar is open to dim the page) -->
+<div id="sidebarOverlay"></div>
