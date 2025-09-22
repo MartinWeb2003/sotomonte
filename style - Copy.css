@@ -608,25 +608,6 @@
     overflow: hidden;
     height: auto;
   }
-
-  /* Additional detail fields for detailed property view */
-.location {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #666;
-}
-.status {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-.status.sold {
-  color: #c00;
-}
-.status.available {
-  color: #2e7d32; /* dark green tone for available */
-}
-
   
   /* ============================= */
   /* FOOTER (from footer.html)     */
@@ -967,6 +948,21 @@
       background-color: #333;
     }
 
+    /* Arrow buttons */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      cursor: pointer;
+      user-select: none;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      padding: 0.2rem 0.5rem;
+      z-index: 5;
+    }
+    #arrowLeft { left: 10px; }
+    #arrowRight { right: 10px; }
 
 /* ───── HERO (prodaja page) ───── */
 #prodaja-hero {
@@ -980,12 +976,6 @@
   /* base colour in case images fail to load */
   background-color: var(--clr-primary);
   color: var(--clr-white);
-}
-
-.carousel-wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* ensure heading and paragraph inherit colour and have subtle shadow */

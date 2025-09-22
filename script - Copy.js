@@ -61,27 +61,6 @@ function toHttps(url){
 }
 const PLACEHOLDER = "https://via.placeholder.com/400x200?text=No+Image";
 
-/**
- * Format a numeric price into a human‑readable European format with spaces
- * between groups of three digits and append a euro symbol.
- * Examples: 300000 → "300 000€", 1250000 → "1 250 000€".
- * If the input cannot be parsed as a number, it returns the original value unchanged.
- * @param {number|string} value
- * @returns {string}
- */
-function formatPriceEUR(value) {
-  const num = Number(value);
-  if (!isFinite(num)) return String(value || '');
-  // Insert a space every 3 digits from the right, then append the euro sign
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + '€';
-}
-
-// Make the helper available globally so inline scripts (like detailedView.html)
-// can call it directly.
-if (typeof window !== 'undefined') {
-  window.formatPriceEUR = formatPriceEUR;
-}
-
 
 // Helper modal functions
 function showModal(modal) { if (modal) modal.style.display = "flex"; }
@@ -206,13 +185,6 @@ async function fetchProperties(){
   const snap = await db.collection("properties").get();
   return snap.docs.map(d=>({ id:d.id, title:d.data().title||"", ...d.data() }));
 }
-
-function formatPriceEUR(value) {
-  const num = Number(value);
-  if (!isFinite(num)) return String(value || '');
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + '€';
-}
-
 
 /* === SCROLL-REVEAL (unchanged) =========================================== */
 document.addEventListener('DOMContentLoaded', () => {
