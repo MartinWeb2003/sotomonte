@@ -634,4 +634,57 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// ========== HERO: fade-in title & typewriter paragraph ==========
+document.addEventListener('DOMContentLoaded', () => {
+  const heroTitle = document.getElementById('prodajaHeroTitle');
+  const heroText  = document.getElementById('prodajaHeroText');
+
+  // Fade-in H1 (only on pages that have it)
+  if (heroTitle) {
+    heroTitle.classList.add('hero-fade-in');   // start hidden
+    // next frame -> show
+    requestAnimationFrame(() => heroTitle.classList.add('show'));
+  }
+
+  // Typewriter for paragraph
+  if (heroText) {
+    const full = heroText.textContent.trim();
+    heroText.textContent = ''; // clear before typing
+    typeWriter(heroText, full, 20); // speed (ms per char)
+  }
+
+  // Reveal on scroll for benefit cards
+  const cards = document.querySelectorAll('.benefit-card');
+  if (cards.length) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          obs.unobserve(e.target); // animate once
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(c => io.observe(c));
+  }
+});
+
+/**
+ * Typewriter effect: types `text` into `el`
+ * @param {HTMLElement} el
+ * @param {string} text
+ * @param {number} speed  ms per character (lower = faster)
+ */
+function typeWriter(el, text, speed = 25) {
+  let i = 0;
+  function tick() {
+    // add a couple of chars per frame for smoother feel on mobile
+    el.textContent += text.slice(i, i + 2);
+    i += 2;
+    if (i < text.length) {
+      setTimeout(tick, speed);
+    }
+  }
+  tick();
+}
 

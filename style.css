@@ -27,6 +27,12 @@
     overflow-x: hidden;
     font-family: var(--font-body);
   }
+    /* Prevent global horizontal scroll */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   
   /* ============================= */
   /* HEADER / NAV BAR              */
@@ -49,7 +55,7 @@
     cursor: pointer;
   }
   .logo img {
-    height: 36px;
+    height: 40px;
     margin-right: 0.5rem;
   }
   
@@ -1174,6 +1180,39 @@
   user-select: none;
 }
 
+/* ===== Hero animations ===== */
+.hero-fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .7s ease-out, transform .7s ease-out;
+}
+.hero-fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Reveal-on-scroll for benefit cards ===== */
+.benefit-card {
+  /* you already have base styles; these add initial hidden state */
+  opacity: 0;
+  transform: translateY(20px) scale(.98);
+}
+
+/* “boing” keyframes for a gentle overshoot */
+@keyframes boingInUp {
+  0%   { opacity: 0; transform: translateY(20px) scale(.98); }
+  60%  { opacity: 1; transform: translateY(-4px) scale(1.03); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* when card enters viewport, play the animation once */
+.benefit-card.in-view {
+  animation: boingInUp .6s ease-out both;
+}
+
+/* optional: stagger the cards slightly */
+.benefits-container .benefit-card:nth-child(2).in-view { animation-delay: .08s; }
+.benefits-container .benefit-card:nth-child(3).in-view { animation-delay: .16s; }
 
 
 
