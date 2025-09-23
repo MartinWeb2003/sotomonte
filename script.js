@@ -404,7 +404,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       const div = document.createElement("div");
       div.className="card";
       div.dataset.solddate = data.isSold?"PRODANO":"Dostupno";
-      div.dataset.price    = `$${data.price||"-"}`;
+      div.dataset.price = formatPriceEUR(data.price || "-");
       div.dataset.beds     = data.bedAmount||"-";
       div.dataset.baths    = data.bathAmount||"-";
       div.dataset.address  = data.address||"";
@@ -413,7 +413,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         <img src="${img}" alt="preview">
         <div class="card-content">
           <div class="sold-date"><span class="red-dot">•</span> ${data.isSold?"PRODANO":"Dostupno"}</div>
-          <h3>$${data.price||"-"}</h3>
+          <h3>${formatPriceEUR(data.price)}</h3>
           <div class="details">${data.bedAmount||"-"} bed&nbsp;${data.bathAmount||"-"} bath</div>
           <div class="address">${data.address||"N/A"}<br>${data.cityName||""}</div>
         </div>`;
@@ -688,3 +688,23 @@ function typeWriter(el, text, speed = 25) {
   tick();
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const heroTitle = document.getElementById("heroTitle");
+  if (heroTitle) {
+    const fullText = heroTitle.textContent.trim();
+    heroTitle.textContent = ""; // clear before typing
+
+    const duration = 1600; // total time: 2 seconds
+    const speed = Math.max(duration / fullText.length, 20); 
+    // minimum speed 20ms/char so it doesn't go too fast on short text
+
+    let i = 0;
+    function type() {
+      heroTitle.textContent = fullText.slice(0, i++);
+      if (i <= fullText.length) {
+        setTimeout(type, speed);
+      }
+    }
+    type();
+  }
+});
